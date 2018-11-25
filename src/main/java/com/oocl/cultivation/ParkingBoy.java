@@ -1,18 +1,23 @@
 package com.oocl.cultivation;
 
+import java.util.Comparator;
+import java.util.Optional;
+
 public class ParkingBoy {
 
-    private final ParkingLot parkingLot;
     private String lastErrorMessage;
+    private ParkingLotList parkingLotList;
 
 
-    public ParkingBoy(ParkingLot parkingLot) {
-        this.parkingLot = parkingLot;
+    public ParkingBoy(ParkingLotList parkingLotList) {
+        this.parkingLotList = parkingLotList;
     }
 
     public ParkingTicket park(Car car) {
         // TODO: Please implement the method
-        if (parkingLot.hasSpace()){
+        Optional<ParkingLot> chooseparkingLot = selectParkingLot();
+        if (chooseparkingLot.isPresent()){
+            ParkingLot parkingLot = chooseparkingLot.get();
             ParkingTicket parkingTicket = new ParkingTicket(parkingLot);
             parkingLot.park(parkingTicket,car);
             lastErrorMessage = null;
@@ -36,7 +41,7 @@ public class ParkingBoy {
             lastErrorMessage = "Unrecognized parking ticket.";
         }
         else {
-            car = parkingLot.fetch(parkingTicket);
+            car = parkingTicket.getParkingLot().fetch(parkingTicket);
             parkingTicket.changeStates(true);
             lastErrorMessage = null;
         }
@@ -49,5 +54,12 @@ public class ParkingBoy {
 
     public String getLastErrorMessage() {
         return lastErrorMessage;
+    }
+
+
+    public Optional<ParkingLot> selectParkingLot() {
+        return parkingLotList.getParkingLots().stream()
+                .filter(ParkingLot::hasSpace)
+                .findFirst();
     }
 }

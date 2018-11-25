@@ -16,4 +16,8 @@ public class ParkingTicket {
     public void changeStates(boolean used){
         this.used = used;
     }
+
+    public ParkingLot getParkingLot() {
+        return parkingLot;
+    }
 }
