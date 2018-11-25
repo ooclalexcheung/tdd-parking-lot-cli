@@ -1,7 +1,7 @@
 package com.oocl.cultivation;
 import java.util.*;
 public class ParkingLotList {
-    List<ParkingLot> parkingLots;
+    private List<ParkingLot> parkingLots;
 
     public ParkingLotList(List<ParkingLot> parkingLots){
         this.parkingLots = parkingLots;

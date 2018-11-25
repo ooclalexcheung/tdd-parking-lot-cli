@@ -31,4 +31,8 @@ public class ParkingLot {
         return (cars.size() < capacity);
     }
 
+    public int getAvailablePositionRate(){
+        return getAvailableParkingPosition()/capacity;
+    }
+
 }

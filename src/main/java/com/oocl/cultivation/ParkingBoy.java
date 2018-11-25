@@ -6,7 +6,7 @@ import java.util.Optional;
 public class ParkingBoy {
 
     private String lastErrorMessage;
-    private ParkingLotList parkingLotList;
+    public ParkingLotList parkingLotList;
 
 
     public ParkingBoy(ParkingLotList parkingLotList) {
