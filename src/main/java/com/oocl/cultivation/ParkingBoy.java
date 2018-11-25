@@ -12,12 +12,39 @@ public class ParkingBoy {
 
     public ParkingTicket park(Car car) {
         // TODO: Please implement the method
-        throw new RuntimeException("Not implemented");
+        if (parkingLot.hasSpace()){
+            ParkingTicket parkingTicket = new ParkingTicket(parkingLot);
+            parkingLot.park(parkingTicket,car);
+            lastErrorMessage = null;
+            return parkingTicket;
+        }
+        else {
+            lastErrorMessage = "The parking lot is full.";
+            return null;
+        }
+        //throw new RuntimeException("Not implemented");
     }
 
-    public Car fetch(ParkingTicket ticket) {
+    public Car fetch(ParkingTicket parkingTicket) {
         // TODO: Please implement the method
-        throw new RuntimeException("Not implemented");
+        Car car = null;
+        if(parkingTicket == null){
+            lastErrorMessage = "Please provide your parking ticket.";
+            return null;
+        }
+        if(parkingTicket.isUsed()){
+            lastErrorMessage = "Unrecognized parking ticket.";
+        }
+        else {
+            car = parkingLot.fetch(parkingTicket);
+            parkingTicket.changeStates(true);
+            lastErrorMessage = null;
+        }
+        if (car == null){
+            lastErrorMessage = "Unrecognized parking ticket.";
+        }
+        return car;
+        //throw new RuntimeException("Not implemented");
     }
 
     public String getLastErrorMessage() {

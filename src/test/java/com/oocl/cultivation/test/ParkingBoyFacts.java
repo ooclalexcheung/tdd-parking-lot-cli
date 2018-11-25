@@ -1,4 +1,3 @@
-/*
 package com.oocl.cultivation.test;
 
 import com.oocl.cultivation.Car;
@@ -44,7 +43,7 @@ class ParkingBoyFacts {
         ParkingLot parkingLot = new ParkingLot();
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
         Car car = new Car();
-        ParkingTicket wrongTicket = new ParkingTicket();
+        ParkingTicket wrongTicket = new ParkingTicket(parkingLot);
 
         ParkingTicket ticket = parkingBoy.park(car);
 
@@ -56,7 +55,7 @@ class ParkingBoyFacts {
     void should_query_message_once_the_ticket_is_wrong() {
         ParkingLot parkingLot = new ParkingLot();
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
-        ParkingTicket wrongTicket = new ParkingTicket();
+        ParkingTicket wrongTicket = new ParkingTicket(parkingLot);
 
         parkingBoy.fetch(wrongTicket);
         String message = parkingBoy.getLastErrorMessage();
@@ -68,7 +67,7 @@ class ParkingBoyFacts {
     void should_clear_the_message_once_the_operation_is_succeeded() {
         ParkingLot parkingLot = new ParkingLot();
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
-        ParkingTicket wrongTicket = new ParkingTicket();
+        ParkingTicket wrongTicket = new ParkingTicket(parkingLot);
 
         parkingBoy.fetch(wrongTicket);
         assertNotNull(parkingBoy.getLastErrorMessage());
@@ -153,4 +152,3 @@ class ParkingBoyFacts {
         assertEquals("The parking lot is full.", parkingBoy.getLastErrorMessage());
     }
 }
-*/
