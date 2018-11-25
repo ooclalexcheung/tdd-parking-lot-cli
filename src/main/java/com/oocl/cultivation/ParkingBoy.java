@@ -5,6 +5,7 @@ public class ParkingBoy {
     private final ParkingLot parkingLot;
     private String lastErrorMessage;
 
+
     public ParkingBoy(ParkingLot parkingLot) {
         this.parkingLot = parkingLot;
     }
